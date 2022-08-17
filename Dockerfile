@@ -16,7 +16,7 @@ RUN mvn package -DskipTests
 FROM doptopenjdk/openjdk11:alpine-jre
 
 # Copy the jar to the production image from the builder stage.
-COPY --from=builder /app/target/pubsubdemo-*.jar /pubsubdemo.jar
+COPY --from=builder /app/target/demo-*.jar /demo.jar
 
 # Run the web service on container startup.
-CMD ["java","-Djava.security.egd=file:/dev/./urandom","-Dserver.port=${PORT}","-jar","/pubsubdemo.jar"]
+CMD ["java","-Djava.security.egd=file:/dev/./urandom","-Dserver.port=${PORT}","-jar","/demo.jar"]
